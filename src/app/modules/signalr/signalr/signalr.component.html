@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <button mat-button color="white" (click)="perfilAtual = perfilEnum.treinador"
+    aria-label="Treinador">Treinador</button>
+  <button mat-button color="white" (click)="perfilAtual = perfilEnum.jogador" aria-label="Jogador">Jogador</button>
+</mat-toolbar>
+<div *ngIf="perfilAtual === perfilEnum.treinador" fxLayout="row" fxLayoutAlign="space-around center">
+  <button mat-button color="white" *ngFor="let jogo of jogos" (click)="finalizarJogo(jogo)"
+    [attr.aria-label]="'Finalizar Jogo ' + jogo">Finalizar Jogo {{jogo}}</button>
+</div>
+<div *ngIf="perfilAtual === perfilEnum.jogador && jogoAtual == 0" fxLayout="row" fxLayoutAlign="space-around center">
+  <button mat-button color="white" *ngFor="let jogo of jogos" (click)="iniciarJogo(jogo)"
+    [attr.aria-label]="'Entrar: Jogo ' + jogo">Entrar: Jogo {{jogo}}</button>
+</div>
+<h1 *ngIf="perfilAtual == perfilEnum.jogador && jogoAtual > 0">
+  Jogo Atual: Jogo {{jogoAtual}}
+</h1>
