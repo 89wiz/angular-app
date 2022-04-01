@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:component": "ng build -c prod --output-hashing none",
+    "build-component": "ng build -c prod --output-hashing none",
     "generate-webcomponent": "node build-component.js"
   },
   "private": true,

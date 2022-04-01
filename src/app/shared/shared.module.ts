@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,7 +16,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ]
 })
 

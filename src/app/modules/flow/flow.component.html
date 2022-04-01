@@ -1,0 +1,4 @@
+<mat-toolbar>
+  <button mat-button color="white" (click)="addQuestion()" aria-label="Add Question">Add Question</button>
+</mat-toolbar>
+<app-flow-question *ngFor="let question of questions" [question]="question" style="display: inline-block; height: 0px; width: 0px;"></app-flow-question>

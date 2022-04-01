@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'signalr',
     loadChildren: () => import('./modules/signalr/signalr.module').then(m => m.SignalRModule)
   },
+  {
+    path: 'flow',
+    loadChildren: () => import('./modules/flow/flow.module').then(m => m.FlowModule)
+  },
   { path: '**', redirectTo: '/home' }
 ];
 
