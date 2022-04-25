@@ -7,8 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
+  declarations: [
+    ConfirmDialogComponent
+  ],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -17,7 +23,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatTabsModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -27,7 +34,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatTabsModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    ConfirmDialogComponent
   ]
 })
 

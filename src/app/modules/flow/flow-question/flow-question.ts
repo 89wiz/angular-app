@@ -13,6 +13,13 @@ export interface FlowQuestionPosition {
 export interface FlowQuestionAnswer {
     id: number,
     answer: string,
+    dragging: boolean,
     leadTo: number | undefined,
     position: FlowQuestionPosition
+}
+
+export enum FlowQuestionStatus {
+    noLink,
+    linking,
+    linked
 }

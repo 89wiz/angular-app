@@ -1,9 +1,41 @@
-<mat-card id="question-{{question?.id}}" cdkDrag [cdkDragFreeDragPosition]="position" (cdkDragStarted)="dragStart($event)" (cdkDragEnded)="savePosition($event, question)">
-  <mat-icon cdkDragHandle>drag_handle</mat-icon>
-  <p>{{question?.question}}</p>
+<mat-card id="question-{{question?.id}}" cdkDrag [cdkDragFreeDragPosition]="position"
+  (cdkDragStarted)="dragStart($event)" (cdkDragEnded)="savePosition($event, question)">
+  <!-- <div cdkDropList id="question-{{question?.id}}" [cdkDropListData]="question.link"
+    [cdkDropListConnectedTo]="[answerLink]" class="example-list" (cdkDropListDropped)="drop($event)"> -->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-icon cdkDragHandle>drag_handle</mat-icon>
+    <div>
+      <button mat-icon-button color="accent" aria-label="Edit" (click)="edit(question)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Delete" (click)="delete(question)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button mat-icon-button aria-label="Link Question" (click)="linkQuestion(question)">
+      <mat-icon cdkDragHandle>link</mat-icon>
+    </button>
+    <span>{{question?.question}}</span>
+  </div>
   <hr />
-  <button mat-raised-button *ngFor="let answer of question?.answers; let i = index" id="answer-{{answer.id}}" cdkDrag
-    [cdkDragFreeDragPosition]="answer.position" (cdkDragStarted)="dragStart($event, true)" (cdkDragEnded)="reset($event)">
-    {{i + 1}}. {{answer.answer}}
-  </button>
+  <div *ngFor="let answer of question?.answers; let i = index" id="answer-{{answer.id}}" fxLayout="row"
+    fxLayoutAlign="space-between center">
+    <span>{{i + 1}}. {{answer.answer}}</span>
+    <!-- <div cdkDropList id="answer-{{question?.id}}-{{answer.id}}" [cdkDropListData]="answer.link" [cdkDropListConnectedTo]="getQuestionIds(question?.id)"
+      class="example-list" (cdkDropListDropped)="drop($event)"> -->
+    <div>
+      <!-- <mat-icon cdkDrag [cdkDragFreeDragPosition]="answer.position"
+        (cdkDragStarted)="dragLinkStart($event, answer, true)" (cdkDragEnded)="dragLinkEnd($event, answer)">
+        {{answer.dragging ? 'circle' : 'radio_button_checked'}}</mat-icon>
+      <mat-icon *ngIf="answer.dragging" class="icon-background">radio_button_unchecked</mat-icon> -->
+      <button *ngIf="!answer.leadTo" mat-icon-button aria-label="Link Answer" (click)="linkAnswer(answer)">
+        <mat-icon cdkDragHandle>add_link</mat-icon>
+      </button>
+      <button *ngIf="answer.leadTo" mat-icon-button mat-icon-button color="warn" aria-label="Unlink Answer" (click)="unlinkAnswer(answer)">
+        <mat-icon cdkDragHandle>link_off</mat-icon>
+      </button>
+    </div>
+  </div>
 </mat-card>

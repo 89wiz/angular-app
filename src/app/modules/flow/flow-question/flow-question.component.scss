@@ -1,3 +1,12 @@
 mat-card {
-    width: 120px;
+    width: 200px;
+}
+mat-icon {
+    font-size: 18px;
+}
+.icon-background {
+    display: inline-block;
+    position: relative;
+    margin-left: -24px;
+    z-index: -100;
 }

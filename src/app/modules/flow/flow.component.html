@@ -1,4 +1,10 @@
 <mat-toolbar>
   <button mat-button color="white" (click)="addQuestion()" aria-label="Add Question">Add Question</button>
+  <button mat-button color="white" (click)="save()" aria-label="Save">Save</button>
+  <button mat-button color="white" (click)="load()" aria-label="Load">Load</button>
 </mat-toolbar>
-<app-flow-question *ngFor="let question of questions" [question]="question" style="display: inline-block; height: 0px; width: 0px;"></app-flow-question>
+<app-flow-question *ngFor="let question of questions" [question]="question"
+  style="display: inline-block; height: 0px; width: 0px;" (onEdit)="edit($event)" (onDelete)="delete($event)"
+  (onLinkQuestion)="linkQuestion($event)" (onLinkAnswer)="linkAnswer($event)" (onUnlinkAnswer)="unlinkAnswer($event)" (onUpdatePosition)="updatePosition($event)">
+</app-flow-question>
+<mat-icon *ngIf="showCursor" cdkDrag [cdkDragFreeDragPosition]="cursorPosition">circle</mat-icon>

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Question</h1>
+<div mat-dialog-content>
+  <form [formGroup]="questionForm" (ngSubmit)="save()">
+    <div fxLayout="row wrap">
+      <mat-form-field fxFlex="100">
+        <mat-label>Question</mat-label>
+        <input matInput type="text" formControlName="question" />
+      </mat-form-field>
+      <hr />
+      <mat-form-field fxFlex="100">
+        <mat-label>Answer 1</mat-label>
+        <input matInput type="text" formControlName="answer1" />
+      </mat-form-field>
+      <mat-form-field fxFlex="100">
+        <mat-label>Answer 2</mat-label>
+        <input matInput type="text" formControlName="answer2" />
+      </mat-form-field>
+      <mat-form-field fxFlex="100">
+        <mat-label>Answer 3</mat-label>
+        <input matInput type="text" formControlName="answer3" />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</div>
