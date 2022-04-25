@@ -83,9 +83,13 @@ export class FlowComponent implements OnInit {
       return;
 
     link.answer.leadTo = link.question.id;
-    let leaderLine = new LeaderLine(document.getElementById(`answer-${link.answer.id}`), document.getElementById(`question-${link.question.id}`));
-    this.links.push({ question: link.question, answer: link.answer, leaderLine: leaderLine });
+    this.createLeadLine(link.question, link.answer, this.links);
     this.linking = { question: undefined, answer: undefined };
+  }
+
+  createLeadLine(question: FlowQuestion, answer: FlowQuestionAnswer, links: { question: FlowQuestion, answer: FlowQuestionAnswer, leaderLine: any }[]) {
+    let leaderLine = new LeaderLine(document.getElementById(`answer-${answer.id}`), document.getElementById(`question-${question.id}`));
+    links.push({ question: question, answer: answer, leaderLine: leaderLine });
   }
 
   unlinkAnswer(answer: FlowQuestionAnswer) {
@@ -94,6 +98,7 @@ export class FlowComponent implements OnInit {
       return;
 
     this.links[index].leaderLine.remove();
+    this.links[index].answer.leadTo = undefined;
     this.links.splice(index, 1);
   }
 
@@ -108,7 +113,26 @@ export class FlowComponent implements OnInit {
   }
 
   load() {
+    for (let link of this.links)
+      link.leaderLine.remove();
+    this.links = [];
     this.questions = JSON.parse(localStorage.getItem(FlowComponent.localStorageKey) || '');
+
+    let questions = this.questions;
+    let createLeadLine = this.createLeadLine;
+    let links = this.links;
+
+    setTimeout(function () {
+      for (let question of questions) {
+        for (let answer of question.answers) {
+          if (!answer.leadTo) continue;
+
+          let q = questions.find(x => x.id == answer.leadTo);
+
+          if (q) createLeadLine(q, answer, links);
+        }
+      }
+    }, 250);
   }
 
   @HostListener('mousemove', ['$event'])
