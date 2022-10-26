@@ -26,7 +26,6 @@
     "@angular/router": "~13.3.0",
     "@microsoft/signalr": "^6.0.3",
     "@types/google.visualization": "^0.0.68",
-    "angular-google-charts": "^2.2.2",
     "leader-line": "^1.0.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
